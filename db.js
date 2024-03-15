@@ -220,9 +220,9 @@ db.users.find({
     $or:[
         {país : "Argentina"},
         {país : "Chile"},
-        $and:[
+        {$and:[
             {edad : {$lt : 25}}
-        ]
+        ]}
     ]
 })
 
@@ -235,15 +235,16 @@ db.users.find({país : {$ne : "España", $ne :"Mexico"},$and:[
 
 //punto 18
 db.users.find({
-    $and:[
-        {país : "Alemania"},
-        {salario : {$lt : 4000}}
-    ],$or:[
-        {edad :{$gt : 35}}
+    $and: [
+        { country: 'Alemania' },
+        {
+            $or: [
+                { salary: { $lt: 4000 } },
+                { age: { $gt: 35 } }
+            ]
+        }
     ]
-})
-db.users.find({edad : {$gt : 35}})
-
+});
 //punto19
 db.users.find({
     $and:[
